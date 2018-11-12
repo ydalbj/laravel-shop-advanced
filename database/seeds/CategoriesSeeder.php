@@ -76,6 +76,8 @@ class CategoriesSeeder extends Seeder
             $category->parent()->associate($parent);
         }
 
+        $category->save();
+
         if (isset($data['children']) && is_array($data['children'])) {
             foreach ($data['children'] as $child) {
                 $this->createCategory($child, $category);
