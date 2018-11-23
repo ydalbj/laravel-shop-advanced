@@ -16,11 +16,14 @@ $factory->define(App\Models\Product::class, function (Faker $faker) {
         "https://lccdn.phphub.org/uploads/images/201806/01/5320/pa7DrV43Mw.jpg",
     ]);
 
+    $category = \App\Models\Category::where('is_directory', false)->inRandomOrder()->first();
+
     return [
         'title'        => $faker->word,
         'description'  => $faker->sentence,
         'image'        => $image,
         'on_sale'      => true,
+        'category_id'  => $category ? $category->id : null,
         'rating'       => $faker->numberBetween(0, 5),
         'sold_count'   => 0,
         'review_count' => 0,

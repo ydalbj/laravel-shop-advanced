@@ -41,12 +41,12 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function getPathIdsAttributes()
+    public function getPathIdsAttribute()
     {
         return array_filter(explode('-', trim($this->path, '-')));
     }
 
-    public function getAncestorsAttributes()
+    public function getAncestorsAttribute()
     {
         return self::query()
             ->whereIn('id', $this->path_ids)
@@ -54,7 +54,7 @@ class Category extends Model
             ->get();
     }
 
-    public function getFullNameAttributes()
+    public function getFullNameAttribute()
     {
         return $this->ancestors
             ->pluck('name')
